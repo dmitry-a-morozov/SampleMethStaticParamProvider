@@ -15,3 +15,7 @@ dmitry.Name <- "Alexei"
 dmitry.Name, dmitry.Age
 let don = ExampleType.CreateBag<"Name,Age,Title">(Name = "Don", Age = 21, Title = "Principal Researcher")
 don.Name, don.Age, don.Title 
+
+type MyResult = ExampleType.``CreateBag,Properties="Name,Age"_Result``
+
+typeof<MyResult>.Name

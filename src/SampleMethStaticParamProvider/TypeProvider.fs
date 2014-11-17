@@ -51,7 +51,8 @@ type public MyTypeProvider() as this =
         let m = ProvidedMethod("CreateBag", [], typeof<obj>, IsStaticMethod = true)
         m.DefineStaticParameters(staticParams, (fun methodName args ->
             let props = [| for x in (unbox<string> args.[0]).Split(',') -> x.Trim() |]
-            let resultType = ProvidedTypeDefinition(sprintf "%s_Result" methodName, Some typeof<obj>, HideObjectMethods = true)
+            let resultTypeName = sprintf "%s_Result" methodName
+            let resultType = ProvidedTypeDefinition(resultTypeName, Some typeof<obj>, HideObjectMethods = true)
             for name in props do
                 let prop = ProvidedProperty(name, typeof<obj>)
                 prop.GetterCode <- fun args -> <@@ (%%Expr.Coerce(args.[0], typeof<Dictionary<string, obj>>): Dictionary<string, obj>).[name] @@>
