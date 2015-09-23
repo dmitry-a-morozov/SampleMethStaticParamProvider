@@ -30,10 +30,14 @@ type public MyTypeProvider() as this =
         InvokeCode = fun [ self; prefix ] -> <@@ (%%prefix : int) + (%%self :> obj :?> int) @@>)
 
 
-  let staticParams = [ProvidedStaticParameter("Count", typeof<int>)]
+  let staticParams = [
+    ProvidedStaticParameter("Count", typeof<int>)
+    ProvidedStaticParameter("Fail", typeof<bool>, false)
+  ]
   let exampleMethWithStaticParams =  
       let m = ProvidedMethod("ExampleMethWithStaticParam", [ ], typeof<int>, IsStaticMethod = false)
       m.DefineStaticParameters(staticParams, (fun nm args ->
+          if unbox args.[1] then failwith "Test exception."
           let arg = args.[0] :?> int
           let parms = [ for i in 1 .. arg -> ProvidedParameter("arg" + string i, typeof<int>)]
           let m2 = 
