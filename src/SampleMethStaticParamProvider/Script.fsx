@@ -1,8 +1,13 @@
-// Learn more about F# at http://fsharp.org. See the 'F# Tutorial' project
-// for more guidance on F# programming.
+#r @"..\..\bin\SampleMethStaticParamProvider.dll"
 
-#load "Library.fs"
-open SampleMethStaticParamProvider
+type ExampleType = ExampleTypeProvider.ExampleType
 
-let num = Library.hello 42
-printfn "%i" num
+let x = ExampleType()
+
+let v1 = x.ExampleMethWithStaticParam<1>(1) 
+let v2 = x.ExampleMethWithStaticParam<2>(1,2) 
+let v3 = x.ExampleMethWithStaticParam<3>(1,2,3) 
+
+let bag = ExampleType.CreateBag<"Name,Grand Slams">("Roger Federer", 17)
+bag.Name
+bag.``Grand Slams``
