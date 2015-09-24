@@ -52,7 +52,7 @@ type public MyTypeProvider() as this =
         m.DefineStaticParameters(staticParams, (fun methodName args ->
             let props = [| for x in (unbox<string> args.[0]).Split(',') -> x.Trim() |]
 
-            failwith "Test. Haha!"
+            //failwith "Test. Haha!"
 
             let resultTypeName = sprintf "%s_Result" methodName
             let resultType = ProvidedTypeDefinition(resultTypeName, Some typeof<obj>, HideObjectMethods = true)
