@@ -9,9 +9,10 @@ open System.Reflection
 [<TypeProvider>]
 type public MyTypeProvider() as this = 
   inherit TypeProviderForNamespaces()
+
   let asm = Assembly.GetExecutingAssembly()
   let ns = "ExampleTypeProvider"
-  let newType = ProvidedTypeDefinition(asm, ns, "ExampleType", Some typeof<obj>)
+  let newType = ProvidedTypeDefinition(asm, ns, "ExampleType", Some typeof<obj>, IsErased = false)
   
   let helloWorld = ProvidedProperty("Hello", typeof<string>, IsStatic = true, GetterCode = (fun _ -> <@@ 333  @@>))
   let cons = ProvidedConstructor([], InvokeCode = fun _ -> <@@ 3 :> obj @@>)

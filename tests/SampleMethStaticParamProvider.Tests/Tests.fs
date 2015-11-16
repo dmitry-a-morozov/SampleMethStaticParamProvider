@@ -5,8 +5,9 @@
 module SampleMethStaticParamProvider.Tests
 #endif
 
-open ExampleTypeProvider
 open NUnit.Framework
+
+type ExampleType = ExampleTypeProvider.ExampleType
 
 [<Test>]
 let ``basic test`` () =

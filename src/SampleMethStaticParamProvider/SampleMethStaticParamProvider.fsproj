@@ -30,6 +30,8 @@
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\devenv.exe</StartProgram>
     <StartArguments>..\SampleMethStaticParamProvider.sln</StartArguments>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+    <StartArguments>..\SampleMethStaticParamProvider.Tests.sln</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
